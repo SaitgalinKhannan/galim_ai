@@ -1,0 +1,82 @@
+[
+  {
+    "key": "guest_id",
+    "value": "v1%3A174038668221216812",
+    "expires": "2026-03-27T08:44:42.000Z",
+    "maxAge": 34214400,
+    "domain": "twitter.com",
+    "path": "/",
+    "secure": true,
+    "hostOnly": false,
+    "creation": "2025-02-24T08:44:44.450Z",
+    "lastAccessed": "2025-02-24T08:44:46.966Z",
+    "sameSite": "none"
+  },
+  {
+    "key": "kdt",
+    "value": "q30lSOegGWRnhmBpHsrKiP2mkqYSLZgpQpXvbraO",
+    "expires": "2026-03-27T08:44:43.000Z",
+    "maxAge": 34214400,
+    "domain": "twitter.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "hostOnly": false,
+    "creation": "2025-02-24T08:44:46.128Z",
+    "lastAccessed": "2025-02-24T08:44:46.966Z"
+  },
+  {
+    "key": "twid",
+    "value": "\"u=1893358149589180416\"",
+    "expires": "2026-03-27T08:44:43.000Z",
+    "maxAge": 34214400,
+    "domain": "twitter.com",
+    "path": "/",
+    "secure": true,
+    "hostOnly": false,
+    "creation": "2025-02-24T08:44:46.128Z",
+    "lastAccessed": "2025-02-24T08:44:46.966Z",
+    "sameSite": "none"
+  },
+  {
+    "key": "ct0",
+    "value": "e4eba413e86984553882772d9740f5d6edfde413b50ff95ded6fb3f01090021ee6ab6a8d32695a5e48705dc882ec6d32f973ae9c0f55397e8885d10a3134869616b92b32cd7139051b61f81a837c0892",
+    "expires": "2026-03-27T08:44:44.000Z",
+    "maxAge": 34214400,
+    "domain": "twitter.com",
+    "path": "/",
+    "secure": true,
+    "hostOnly": false,
+    "creation": "2025-02-24T08:44:46.128Z",
+    "lastAccessed": "2025-02-24T08:44:46.966Z",
+    "sameSite": "lax"
+  },
+  {
+    "key": "auth_token",
+    "value": "9ad56b15057f4f673991d570d73e57d98f72564b",
+    "expires": "2026-03-27T08:44:43.000Z",
+    "maxAge": 34214400,
+    "domain": "twitter.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "hostOnly": false,
+    "creation": "2025-02-24T08:44:46.128Z",
+    "lastAccessed": "2025-02-24T08:44:46.966Z",
+    "sameSite": "none"
+  },
+  {
+    "key": "att",
+    "value": "1-ZopdToPrNgfRHUuuxy1zMSFB72rU12sd5gYQDkia",
+    "expires": "2025-02-25T08:44:44.000Z",
+    "maxAge": 86400,
+    "domain": "twitter.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "hostOnly": false,
+    "creation": "2025-02-24T08:44:46.439Z",
+    "lastAccessed": "2025-02-24T08:44:46.966Z",
+    "sameSite": "none"
+  }
+]

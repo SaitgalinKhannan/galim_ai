@@ -1,0 +1,29 @@
+{
+  "name": "galim_ai",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node-cron": "^3.0.11",
+    "@types/tough-cookie": "^4.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "agent-twitter-client": "^0.0.18",
+    "better-sqlite3": "^11.8.1",
+    "dayjs": "^1.11.13",
+    "grammy": "^1.35.0",
+    "node-cron": "^3.0.3",
+    "tough-cookie": "^5.1.1"
+  }
+}
