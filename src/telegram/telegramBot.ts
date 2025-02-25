@@ -27,7 +27,9 @@ const startBot = async (scraper: Scraper) => {
 
     await bot.api.setMyCommands([
         { command: "start", description: "Start the bot" },
-        { command: "add_twitter", description: "Add username to sniping" }
+        { command: "twitters", description: "Usernames list" },
+        { command: "add_twitter", description: "Add username to sniping" },
+        { command: "remove_twitter", description: "Remove username from sniping"}
     ]);
 
     bot.use(createTwitterComposer(scraper))

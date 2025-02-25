@@ -3,7 +3,8 @@ import {Scraper, Tweet} from "agent-twitter-client";
 import {Bot} from "grammy";
 import cron from "node-cron";
 import {getLastSeenTweetId, saveTweet, setLastSeenTweetId} from "../database/tweets";
-import {notifyTweetsBulk} from "../telegram/notifyTweetsBulk";
+import {analyzeAndNotifyTweetsBulk} from "../telegram/analyzeAndNotifyTweetsBulk";
+import {analyzeTweetText} from "../ai/analyzeTweet";
 
 async function getTweetsForUser(scraper: Scraper, user: string, maxTweets: number): Promise<Tweet[]> {
     const tweets: Tweet[] = [];
@@ -27,6 +28,10 @@ export async function fetchAndSaveNewTweetsForUser(
     username: string,
     max = 10
 ) {
+    if (username === "" || username === null) {
+        return;
+    }
+
     const lastId = getLastSeenTweetId(username); // "1234567890" или null
     const tweets = await getTweetsForUser(scraper, username, max);
 
@@ -60,13 +65,12 @@ export async function fetchAndSaveNewTweetsForUser(
         if (newest.id) {
             setLastSeenTweetId(username, newest.id);
         }
-        notifyTweetsBulk(username, newTweets);
+        await analyzeAndNotifyTweetsBulk(username, newTweets);
         console.log(`Пользователь "${username}": сохранили ${newTweets.length} новых твитов`);
     } else {
         console.log(`Пользователь "${username}": нет новых твитов`);
     }
 }
-
 
 export function scheduleTweetFetching(scraper: Scraper, bot: Bot) {
     // Функция, которая будет вызываться каждую минуту
@@ -86,5 +90,6 @@ export function scheduleTweetFetching(scraper: Scraper, bot: Bot) {
 
     // Далее запускаем setInterval, чтобы вызывать каждые 60 секунд:
     //setInterval(fetchTweets, 60_000);
-    cron.schedule("* * * * *", checkTweets);
+    //cron.schedule("* * * * *", checkTweets);
+    cron.schedule("*/2 * * * *", checkTweets);
 }

@@ -2,9 +2,13 @@ import { Scraper } from "agent-twitter-client";
 import { Cookie } from "tough-cookie";
 import { promises as fs } from 'fs';
 
-const username = "ai_galim88001";
+/*const username = "ai_galim88001";
 const password = "Lisunsin1";
-const email = "sait05khan@gmail.com";
+const email = "sait05khan@gmail.com";*/
+
+const username = "KhannanSI";
+const password = "Lisunsin1";
+const email = "khannansaitgalin@outlook.com";
 
 const scraper = new Scraper();
 

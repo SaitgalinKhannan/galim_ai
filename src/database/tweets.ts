@@ -57,6 +57,7 @@ export function getLastSeenTweetId(username: string): string | null {
     `).get(username);
 
     if (!row) return null;
+    // @ts-ignore
     return row.last_tweet_id;
 }
 
