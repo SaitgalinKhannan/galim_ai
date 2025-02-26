@@ -2,6 +2,9 @@
 FROM node:20
 LABEL authors="Khann"
 
+# Создаем директорию для данных БД
+RUN mkdir -p /app/data
+
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
@@ -13,6 +16,9 @@ RUN npm install
 
 # Копируем весь проект
 COPY . .
+
+# Указываем точку монтирования для данных (опционально, но полезно для документации)
+VOLUME /app/data
 
 # Компилируем TypeScript в JavaScript
 RUN npx tsc
