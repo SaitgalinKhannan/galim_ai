@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import {Tweet} from "agent-twitter-client";
 
-const db = new Database("tweets.db");
+const db = new Database("/root/ElizaAI/galim_ai/tweets.db");
 
 // Таблица для хранения самих твитов
 db.prepare(`
