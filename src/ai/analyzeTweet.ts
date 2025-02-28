@@ -89,7 +89,7 @@ export async function explainTweet(tweetText: string): Promise<string | null> {
             messages: [
                 {
                     role: "system",
-                    content: "You are a helpful assistant that summarizes the content of a tweet into a concise explanation. Respond only with the explanation, without any additional text or formatting.",
+                    content: "Ты помощник, который кратко объясняет содержание твита на русском языке. Отвечай только объяснением, без дополнительного текста или форматирования.",
                 },
                 {role: "user", content: tweetText},
             ],
