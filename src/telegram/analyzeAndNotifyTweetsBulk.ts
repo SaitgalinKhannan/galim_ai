@@ -1,6 +1,6 @@
 import {Tweet} from "agent-twitter-client";
 import {bot} from "./telegramBot";
-import {analyzeTweetText, CryptoTweetAnalysis} from "../ai/analyzeTweet";
+import {analyzeTweetText, CryptoTweetAnalysis, explainTweet} from "../ai/analyzeTweet";
 
 const CHAT_ID = -1002394284052;
 const CA_THREAD = 114
@@ -14,12 +14,15 @@ export async function analyzeAndNotifyTweetsBulk(username: string, tweets: Tweet
 
     for (const tweet of tweets) {
         let analysis: CryptoTweetAnalysis | null;
+        let explain: string | null;
 
         if (tweet.text) {
             analysis = await analyzeTweetText(tweet.text);
+            explain = await explainTweet(tweet.text);
             console.log(analysis);
         } else {
             analysis = null;
+            explain = null;
         }
 
         // Сформируем ссылку на сам твит
@@ -53,6 +56,8 @@ Contract Address: ${analysis.contractAddress ?? "нет"}
                 `<b>Пользователь:</b> <a href="https://twitter.com/${tweet.username}">${tweet.name || tweet.username}</a>
 <b>Текст:</b> ${tweet.text || ""}
 ${dateString}
+
+<b>Explain: ${explain || ""}</b>
 <b>Ссылка на твит:</b> <a href="${tweetLink}">${tweetLink}</a>`;
 
             // Отправляем сообщение с использованием HTML-разметки

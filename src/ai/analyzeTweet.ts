@@ -24,11 +24,11 @@ const openai = new OpenAI({
 });
 
 export async function analyzeTweetText(tweetText: string): Promise<CryptoTweetAnalysis | null> {
-    try{
+    try {
         // Тут формируем список сообщений в стиле ChatGPT
         const messages = [
             {
-                role: "system" as const,
+                role: "system",
                 content: `
                 You are an expert at structured data extraction. 
                 You'll receive a tweet text and classify it into the following fields:
@@ -45,7 +45,7 @@ export async function analyzeTweetText(tweetText: string): Promise<CryptoTweetAn
             `,
             },
             {
-                role: "user" as const,
+                role: "user",
                 content: `
                 Here is the tweet text:
                 """
@@ -75,8 +75,31 @@ export async function analyzeTweetText(tweetText: string): Promise<CryptoTweetAn
         // }
 
         return result;
-    }catch (e) {
-        return  null;
+    } catch (e) {
+        return null;
     }
 }
 
+export async function explainTweet(tweetText: string): Promise<string | null> {
+    if (!tweetText.trim()) return null;
+
+    try {
+        const response = await openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "system",
+                    content: "You are a helpful assistant that summarizes the content of a tweet into a concise explanation. Respond only with the explanation, without any additional text or formatting.",
+                },
+                {role: "user", content: tweetText},
+            ],
+            max_tokens: 100,
+            temperature: 0.3,
+        });
+
+        return response.choices[0]?.message?.content?.trim() || null;
+    } catch (error) {
+        console.error("Error analyzing tweet:", error);
+        return null;
+    }
+}
