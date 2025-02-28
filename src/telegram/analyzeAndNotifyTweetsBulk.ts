@@ -1,6 +1,6 @@
 import {Tweet} from "agent-twitter-client";
-import {bot} from "./telegramBot";
 import {analyzeTweetText, CryptoTweetAnalysis, explainTweet} from "../ai/analyzeTweet";
+import {bot} from "../main";
 
 const CHAT_ID = -1002394284052;
 const CA_THREAD = 114
