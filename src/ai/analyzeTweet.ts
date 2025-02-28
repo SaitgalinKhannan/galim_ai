@@ -100,7 +100,7 @@ export async function explainTweet(tweetText: string): Promise<string | null> {
 
         return response.choices[0]?.message?.content?.trim() || null;
     } catch (error) {
-        console.error("Error analyzing tweet:", error);
+        console.error("Error explain tweet:", error);
         return null;
     }
 }
