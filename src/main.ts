@@ -1,8 +1,8 @@
 import {login} from "./x/twitterAuth";
 import startBot from "./telegram/telegramBot";
 
-export const botToken = process.env.BOT_TOKEN;
-export const openAiKey = process.env.OPEN_AI_KEY;
+export const botToken: string = process.env.BOT_TOKEN!!;
+export const openAiKey: string = process.env.OPEN_AI_KEY!!;
 
 console.log(`botToken: ${botToken}`)
 console.log(`openAiKey: ${openAiKey}`)
