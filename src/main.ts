@@ -10,7 +10,10 @@ dotenv.config();
 export const getConfig = (): ENV => {
     return {
         BOT_TOKEN: process.env.BOT_TOKEN,
-        OPEN_AI_KEY: process.env.OPEN_AI_KEY
+        OPEN_AI_KEY: process.env.OPEN_AI_KEY,
+        USERNAME: process.env.USERNAME,
+        PASSWORD: process.env.PASSWORD,
+        EMAIL: process.env.EMAIL,
     };
 };
 

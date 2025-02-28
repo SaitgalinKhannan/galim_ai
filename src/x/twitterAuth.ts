@@ -6,15 +6,15 @@ import { promises as fs } from 'fs';
 const password = "Lisunsin1";
 const email = "sait05khan@gmail.com";*/
 
-const username = "KhannanSI";
+/*const username = "KhannanSI";
 const password = "Lisunsin1";
-const email = "khannansaitgalin@outlook.com";
+const email = "khannansaitgalin@outlook.com";*/
 
 const scraper = new Scraper();
 
 const loadCookies = async () => {
     try {
-        const data = await fs.readFile('./cookies.json', 'utf8');
+        const data = await fs.readFile('/app/data/cookies.json', 'utf8');
         const cookies = JSON.parse(data);
         return cookies.map((cookieObj: Cookie) => Cookie.fromJSON(cookieObj)?.toString());
     } catch (error) {
@@ -38,12 +38,12 @@ const loginWithCookies = async () => {
     return false;
 };
 
-const loginWithCredentials = async () => {
+const loginWithCredentials = async (username: string, password: string, email: string) => {
     console.log('Trying to login with username and password');
     await scraper.login(username, password, email);
     if (await scraper.isLoggedIn()) {
         const cookies = await scraper.getCookies();
-        await fs.writeFile('./cookies.json', JSON.stringify(cookies, null, 2));
+        await fs.writeFile('/app/data/cookies.json', JSON.stringify(cookies, null, 2));
         console.log('Logged in successfully with credentials');
         return true;
     } else {
@@ -52,10 +52,10 @@ const loginWithCredentials = async () => {
     return false;
 };
 
-export const login = async () => {
+export const login = async (username: string, password: string, email: string) => {
     const loggedInWithCookies = await loginWithCookies();
     if (!loggedInWithCookies) {
-        await loginWithCredentials();
+        await loginWithCredentials(username, password, email);
     }
     return scraper; // Возвращаем авторизованный экземпляр scraper
 };
