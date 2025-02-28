@@ -4,6 +4,9 @@ import startBot from "./telegram/telegramBot";
 export const botToken = process.env.BOT_TOKEN;
 export const openAiKey = process.env.OPEN_AI_KEY;
 
+console.log(`botToken: ${botToken}`)
+console.log(`openAiKey: ${openAiKey}`)
+
 async function main() {
     const scraper = await login();
 
