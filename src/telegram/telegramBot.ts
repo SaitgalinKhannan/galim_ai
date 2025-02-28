@@ -32,10 +32,10 @@ const startBot = async (scraper: Scraper, bot: Bot<Context, Api>) => {
         { command: "remove_twitter", description: "Remove username from sniping"}
     ]);
 
-    bot.use(createTwitterComposer(scraper))
+    bot.use(createTwitterComposer())
 
     bot.start();
-    scheduleTweetFetching(scraper, bot);
+    scheduleTweetFetching(scraper);
 };
 
 export default startBot;

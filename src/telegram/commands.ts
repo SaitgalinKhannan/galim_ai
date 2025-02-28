@@ -1,9 +1,10 @@
 import {Composer} from "grammy";
-import {Scraper, Tweet} from "agent-twitter-client";
 import fs from "fs";
 import {isErrnoException} from "../utils";
 
-export function createTwitterComposer(scraper: Scraper) {
+export const usernamesFileName = "/app/data/usernames.json"
+
+export function createTwitterComposer() {
     const composer = new Composer();
 
     composer.errorBoundary((err, next) => {
@@ -34,14 +35,14 @@ export function createTwitterComposer(scraper: Scraper) {
                 }
 
                 // Читаем текущий список пользователей
-                const data = fs.readFileSync("usernames.json", "utf8");
+                const data = fs.readFileSync(usernamesFileName, "utf8");
                 const users: string[] = JSON.parse(data);
 
                 // Добавляем новый username
                 users.push(textAfterCommand);
 
                 // Сохраняем обновленный список в файл
-                fs.writeFileSync("usernames.json", JSON.stringify(users, null, 4));
+                fs.writeFileSync(usernamesFileName, JSON.stringify(users, null, 4));
 
                 await ctx.reply(`Username ${textAfterCommand} добавлен в список отслеживаемых.`);
             } catch (error) {
@@ -49,7 +50,7 @@ export function createTwitterComposer(scraper: Scraper) {
                 if (error instanceof Error && 'code' in error) {
                     const err = error as NodeJS.ErrnoException;
                     if (err.code === "ENOENT") {
-                        await fs.promises.writeFile("usernames.json", JSON.stringify([ctx.message.text], null, 4));
+                        await fs.promises.writeFile(usernamesFileName, JSON.stringify([ctx.message.text], null, 4));
                         await ctx.reply(`Username ${ctx.message.text} добавлен в новый список отслеживаемых.`);
                     } else {
                         console.error("Ошибка:", error);
@@ -83,7 +84,7 @@ export function createTwitterComposer(scraper: Scraper) {
                 }
 
                 // Читаем текущий список пользователей
-                const data = fs.readFileSync("usernames.json", "utf8");
+                const data = fs.readFileSync(usernamesFileName, "utf8");
                 const users: string[] = JSON.parse(data);
 
                 // Проверяем, что username есть в списке отслеживаемых
@@ -96,7 +97,7 @@ export function createTwitterComposer(scraper: Scraper) {
                 const newArray: string[] = users.filter(value => value !== textAfterCommand);
 
                 // Сохраняем обновленный список в файл
-                fs.writeFileSync("usernames.json", JSON.stringify(newArray, null, 4));
+                fs.writeFileSync(usernamesFileName, JSON.stringify(newArray, null, 4));
 
                 await ctx.reply(`Username ${textAfterCommand} удален из списка отслеживаемых.`);
 
@@ -113,7 +114,7 @@ export function createTwitterComposer(scraper: Scraper) {
     composer.command("twitters", async (ctx) => {
         try {
             // Читаем файл с пользователями
-            const data = fs.readFileSync("usernames.json", "utf-8");
+            const data = fs.readFileSync(usernamesFileName, "utf-8");
             const users: string[] = JSON.parse(data);
 
             // Форматируем список

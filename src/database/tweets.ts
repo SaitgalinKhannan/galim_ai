@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import {Tweet} from "agent-twitter-client";
 
-const db = new Database("tweets.db"); // /app/data/
+const db = new Database("/app/data/tweets.db"); // /app/data/
 
 // Таблица для хранения самих твитов
 db.prepare(`
