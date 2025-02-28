@@ -1,6 +1,8 @@
 import {login} from "./x/twitterAuth";
 import startBot from "./telegram/telegramBot";
-import {explainTweet} from "./ai/analyzeTweet";
+
+export const botToken = process.env.BOT_TOKEN;
+export const openAiKey = process.env.OPEN_AI_KEY;
 
 async function main() {
     const scraper = await login();

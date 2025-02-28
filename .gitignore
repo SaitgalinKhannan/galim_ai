@@ -1,0 +1,5 @@
+.idea
+.env
+tweets.db
+dist.zip
+cookies.json

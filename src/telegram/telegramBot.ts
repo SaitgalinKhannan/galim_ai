@@ -2,8 +2,9 @@ import {Bot, BotError, GrammyError, HttpError} from "grammy";
 import {Scraper} from "agent-twitter-client";
 import {createTwitterComposer} from "./commands";
 import {scheduleTweetFetching} from "../x/getTweets";
+import {botToken} from "../main";
 
-const botToken = "8188164028:AAE3S8B0SsUa5vUJjrTVefI9hqE4YauWkfs";
+// const botToken = "8188164028:AAE3S8B0SsUa5vUJjrTVefI9hqE4YauWkfs";
 export const bot = new Bot(botToken);
 
 // error handler

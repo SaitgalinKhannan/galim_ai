@@ -1,6 +1,7 @@
 import {z} from "zod";
 import OpenAI from "openai";
 import {zodResponseFormat} from "openai/helpers/zod";
+import {openAiKey} from "../main";
 
 // тип данных, который хотим получить от анализа
 const CryptoTweetSchema = z.object({
@@ -20,7 +21,7 @@ interface CryptoTweet {
 export type CryptoTweetAnalysis = z.infer<typeof CryptoTweetSchema>;
 
 const openai = new OpenAI({
-    apiKey: "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"
+    apiKey: openAiKey
 });
 
 export async function analyzeTweetText(tweetText: string): Promise<CryptoTweetAnalysis | null> {
