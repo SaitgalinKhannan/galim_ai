@@ -28,7 +28,7 @@ export async function analyzeTweetText(tweetText: string): Promise<CryptoTweetAn
         // Тут формируем список сообщений в стиле ChatGPT
         const messages = [
             {
-                role: "system",
+                role: "system" as const,
                 content: `
                 You are an expert at structured data extraction. 
                 You'll receive a tweet text and classify it into the following fields:
@@ -45,7 +45,7 @@ export async function analyzeTweetText(tweetText: string): Promise<CryptoTweetAn
             `,
             },
             {
-                role: "user",
+                role: "user" as const,
                 content: `
                 Here is the tweet text:
                 """
