@@ -33,11 +33,11 @@ export async function analyzeAndNotifyTweetsBulk(username: string, tweets: Tweet
             ? tweet.permanentUrl
             : `https://twitter.com/${tweet.username}/status/${tweet.id}`;
 
-        if (analysis && (analysis.contractAddress || analysis.contractAddress !== "")) {
+        if (analysis && analysis.contractAddress && analysis.contractAddress !== "") {
             const message = `Новый твит о крипте от ${tweet.username}:
 ${tweet.text}
 
-<b>Contract Address:</b> <code>${analysis.contractAddress}</code>
+<b>Contract Address:</b> <code>${analysis.contractAddress ?? "нет"}</code>
 
 <b>Explain: ${explain || ""}</b>
 <b>Ссылка на твит:</b> <a href="${tweetLink}">${tweetLink}</a>`
@@ -46,7 +46,7 @@ ${tweet.text}
                 message_thread_id: CA_THREAD,
                 parse_mode: "HTML"
             });
-        } else if (analysis?.isAboutCrypto || analysis?.isAboutTokenLaunch) {
+        } else if (analysis && (analysis.isAboutBlockchain || analysis.isAboutTokenLaunch)) {
             // Дата, если нужна (tweet.timeParsed может быть Date, проверим, что не undefined)
             let dateString = "";
             if (tweet.timeParsed) {

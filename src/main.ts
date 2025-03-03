@@ -29,7 +29,7 @@ export const openai = new OpenAI({
 });
 
 async function main() {
-    const scraper = await login();
+    const scraper = await login(sanitizedConfig.USERNAME, sanitizedConfig.PASSWORD, sanitizedConfig.EMAIL);
 
     if (!await scraper.isLoggedIn()) {
         console.error('Failed to authenticate with Twitter');
